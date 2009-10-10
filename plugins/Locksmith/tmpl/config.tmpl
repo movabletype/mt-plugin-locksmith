@@ -1,0 +1,106 @@
+<mtapp:setting
+    id="entry_locking"
+    label="Entry Locking:"
+	>
+    <input type="radio" name="entry_locking" id="entry_locking_0" value="0"<mt:if name="entry_locking_0"> checked="checked"</mt:if> /> None&nbsp;
+    <input type="radio" name="entry_locking" id="entry_locking_1" value="1"<mt:if name="entry_locking_1"> checked="checked"</mt:if> /> Single Editor&nbsp;
+    <input type="radio" name="entry_locking" id="entry_locking_2" value="2"<mt:if name="entry_locking_2"> checked="checked"</mt:if> /> Entry's Author Only
+</mtapp:setting>
+
+<mtapp:setting
+    id="template_locking"
+    label="Template Locking:"
+	>
+    <input type="radio" name="template_locking" id="template_locking_0" value="0"<mt:if name="template_locking_0"> checked="checked"</mt:if> /> None&nbsp;
+    <input type="radio" name="template_locking" id="template_locking_1" value="1"<mt:if name="template_locking_1"> checked="checked"</mt:if> /> Single Editor&nbsp;
+</mtapp:setting>
+
+<mtapp:setting
+    id="hold_for"
+    label="Hold Lock For:"
+    hint="When editing an object with locking enabled"
+    show_hint="1"
+	>
+    <input type="text" name="hold_for" id="hold_for" value="<mt:var name="hold_for" escape="html">" class="quarter-width" /> minutes
+</mtapp:setting>
+
+<mtapp:setting
+    id="renew_every"
+    label="Renew Lock Every:"
+    hint="When editing an object with locking enabled"
+    show_hint="1"
+	>
+    <input type="text" name="renew_every" id="renew_every" value="<mt:var name="renew_every" escape="html">" class="quarter-width" /> minutes
+</mtapp:setting>
+
+<mtapp:setting
+    id="retry_every"
+    label="Retry Lock Every:"
+    hint="When viewing an object locked by another user"
+    show_hint="1"
+	>
+    <input type="text" name="retry_every" id="retry_every" value="<mt:var name="retry_every" escape="html">" class="quarter-width" /> minutes
+</mtapp:setting>
+
+<mtapp:setting
+    id="override_role"
+    label="Override Role:"
+    hint="Users with this role will be allowed to edit locked objects<br />(System Administrators can always override)"
+    show_hint="1"
+	>
+    <input type="text" name="override_role" id="override_role" value="<mt:var name="override_role" escape="html">" class="half-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="locked_text"
+    label="'Locked' Message:"
+    hint="Text to be displayed when an object is locked; can include MT template code"
+    show_hint="1"
+	>
+    <input type="text" name="locked_text" id="locked_text" value="<mt:var name="locked_text" escape="html">" class="full-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="author_only_text"
+    label="'Author Only' Message:"
+    hint="Text to be displayed when an object is locked because it can only be edited by its author"
+    show_hint="1"
+	>
+    <input type="text" name="author_only_text" id="author_only_text" value="<mt:var name="author_only_text" escape="html">" class="full-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="override_text"
+    label="'Override?' Message:"
+    hint="Text of confirm dialog to override a lock"
+    show_hint="1"
+	>
+    <input type="text" name="override_text" id="override_text" value="<mt:var name="override_text" escape="html">" class="full-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="override_author_only_text"
+    label="'Author Only Override?' Message:"
+    hint="Text of confirm dialog to allow editing of an entry that can only be edited by its author"
+    show_hint="1"
+	>
+    <input type="text" name="override_author_only_text" id="override_author_only_text" value="<mt:var name="override_author_only_text" escape="html">" class="full-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="now_available_text"
+    label="'Now Available' Message:"
+    hint="Text of dialog alerting user when a locked entry is now available for editing"
+    show_hint="1"
+	>
+    <input type="text" name="now_available_text" id="now_available_text" value="<mt:var name="now_available_text" escape="html">" class="full-width" />
+</mtapp:setting>
+
+<mtapp:setting
+    id="read_only_text"
+    label="'Read-Only' Message:"
+    hint="Text to display when a user with Read-only access to an entry is viewing it"
+    show_hint="1"
+	>
+    <input type="text" name="read_only_text" id="read_only_text" value="<mt:var name="read_only_text" escape="html">" class="full-width" />
+</mtapp:setting>

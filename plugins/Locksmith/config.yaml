@@ -1,0 +1,69 @@
+id: Locksmith
+name: Locksmith
+description: Access control
+version: 0.22
+schema_version: 0.1
+
+object_types:
+    objectlock: ObjectLock
+
+config_template: config.tmpl
+
+init_app: $Locksmith::Locksmith::Util::init_app
+
+settings:
+    entry_locking:
+        default: 1
+    template_locking:
+        default: 1
+    hold_for:
+        default: 5
+    renew_every:
+        default: 1
+    retry_every:
+        default: 5
+    override_role:
+    locked_text:
+        default: This <mt:var name="object_type"> is being edited by <$mt:AuthorDisplayName$>.
+    author_only_text:
+        default: This <mt:var name="object_type"> can only be edited by its author, <$mt:var name="entry_author_display_name"$>.
+    override_text:
+        default: Someone else is editing this <mt:var name="object_type">. Override lock?
+    override_author_only_text:
+        default: This <mt:var name="object_type"> can only be edited by its author. Override lock?
+    now_available_text:
+        default: This <mt:var name="object_type"> is now available for editing. Reload?
+    read_only_text:
+        default: Read-only
+
+permissions:
+	blog.edit_all_posts_read_only:
+		label: Read-Only
+		group: blog_admin
+		order: 1000
+    
+applications:
+    cms:
+        methods:
+            locksmith_renew_lock:
+                handler: $Locksmith::Locksmith::CMS::renew_lock
+                requires_login: 0
+            locksmith_retry_lock:
+                handler: $Locksmith::Locksmith::CMS::retry_lock
+                requires_login: 0
+            locksmith_release_lock:
+                handler: $Locksmith::Locksmith::CMS::release_lock
+
+callbacks:
+    MT::App::CMS::template_source.edit_entry: $Locksmith::Locksmith::CMS::source_edit_entry
+    MT::App::CMS::template_param.edit_entry: $Locksmith::Locksmith::CMS::param_edit_entry
+    MT::App::CMS::template_source.edit_template: $Locksmith::Locksmith::CMS::source_edit_template
+    MT::App::CMS::template_param.edit_template: $Locksmith::Locksmith::CMS::param_edit_template
+    MT::App::CMS::template_source.edit_role: $Locksmith::Locksmith::CMS::source_edit_role
+
+tags:
+    block:
+        EntryLockingAuthor: $Locksmith::Locksmith::Tags::hdlr_entry_locking_author
+        TemplateLockingAuthor: $Locksmith::Locksmith::Tags::hdlr_template_locking_author
+        EntryIfAuthorOnly?: $Locksmith::Locksmith::Tags::hdlr_entry_if_author_only
+        EntryIfReadOnly?: $Locksmith::Locksmith::Tags::hdlr_entry_if_read_only
